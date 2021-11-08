@@ -1,3 +1,5 @@
+package test_cases;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -13,7 +15,7 @@ import java.util.List;
 import java.util.jar.JarOutputStream;
 
 
-public class TestAutomation {
+public class TC0001 {
     public static void main(String[] args) {
 
         WebDriverManager.chromedriver().setup();
