@@ -9,7 +9,6 @@ import java.util.Arrays;
 
 public class VytrackLogin {
     public static void main(String[] args) {
-        loginToVytrack();
     }
 
     public static void loginToVytrack(){
