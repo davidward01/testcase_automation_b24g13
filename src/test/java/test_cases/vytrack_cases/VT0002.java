@@ -17,8 +17,6 @@ public class VT0002 {
 
         WebDriver driver = WebDriverFactory.getDriver("chrome");
 
-        driver.manage().window().maximize();
-
         String url = "https://qa2.vytrack.com/user/login";
         driver.get(url);
 
