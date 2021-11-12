@@ -21,6 +21,7 @@ public class VytrackLogin {
         String url = "https://qa2.vytrack.com/user/login";
         driver.get(url);
 
+        // login for Truck Driver "user36"
         driver.findElement(By.name("_username")).sendKeys("user36");
         driver.findElement(By.name("_password")).sendKeys("UserUser123");
         driver.findElement(By.name("_submit")).click();
