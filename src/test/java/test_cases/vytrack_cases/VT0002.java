@@ -17,6 +17,8 @@ public class VT0002 {
 
         WebDriver driver = WebDriverFactory.getDriver("chrome");
 
+        driver.manage().window().maximize();
+
         String url = "https://qa2.vytrack.com/user/login";
         driver.get(url);
 
@@ -26,7 +28,8 @@ public class VT0002 {
         driver.findElement(By.name("_submit")).click();
 
         Thread.sleep(3000);
-        driver.navigate().to("https://qa2.vytrack.com/entity/Extend_Entity_Carreservation");
+        String carsURL = "https://qa2.vytrack.com/entity/Extend_Entity_Carreservation";
+        driver.navigate().to(carsURL);
 
         Thread.sleep(3000);
 //        driver.findElement(By.linkText("java.util.Random@7c22d4f")).click();
@@ -38,7 +41,6 @@ public class VT0002 {
 //
        //List<WebElement> carsInFleet = driver.findElements(By.tagName("tr"));
         List<WebElement> carsInFleet = driver.findElements(By.xpath("//tr[@class='grid-row row-click-action']"));
-
 
 //        for (WebElement each : carsInFleet) {
 //            System.out.println(each.getText());
@@ -56,8 +58,6 @@ public class VT0002 {
         } else {
             System.out.println("FAIL - Vehicle information is not visible");
         }
-
-
 
         //WebElement actualElem = driver.findElement(By.xpath("//h5[@class='user-fieldset']"));
 
