@@ -1,4 +1,4 @@
-package test_cases.vytrack_cases;
+package test_cases.vytrack_cases.testplan_b24g13_sprint1;
 
 import test_cases.utils.WebDriverFactory;
 import org.apache.commons.io.FileUtils;
