@@ -1,4 +1,4 @@
-package test_cases.vytrack_cases.truckdriver;
+package test_cases.vytrack_cases;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -32,8 +32,22 @@ public class VT0002 {
         driver.navigate().to(carsURL);
 
         Thread.sleep(3000);
+//        driver.findElement(By.linkText("java.util.Random@7c22d4f")).click();
+
+//        Actions act = new Actions(driver);
+//        act.moveToElement(driver.findElement(By.linkText(" Fleet"))).perform();
+//
+//        driver.findElement(By.xpath("//a[@href='entity/Extend_Entity_Carreservation']")).click();
+//
+       //List<WebElement> carsInFleet = driver.findElements(By.tagName("tr"));
         List<WebElement> carsInFleet = driver.findElements(By.xpath("//tr[@class='grid-row row-click-action']"));
 
+//        for (WebElement each : carsInFleet) {
+//            System.out.println(each.getText());
+//        }
+
+//        System.out.println(carsInFleet);
+//        System.out.println(carsInFleet.size());
         Collections.shuffle(carsInFleet);
         carsInFleet.get(0).click();
 
@@ -44,5 +58,13 @@ public class VT0002 {
         } else {
             System.out.println("FAIL - Vehicle information is not visible");
         }
+
+        //WebElement actualElem = driver.findElement(By.xpath("//h5[@class='user-fieldset']"));
+
+//        if (actualElem.isDisplayed()){
+//            System.out.println("nice");
+//        }
+
+
     }
 }

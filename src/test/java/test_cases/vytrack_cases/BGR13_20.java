@@ -1,5 +1,6 @@
 package test_cases.vytrack_cases;
 
+import test_cases.utils.WebDriverFactory;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -7,13 +8,11 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import utils.WebDriverFactory;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
-
-import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.*;
 
 public class BGR13_20 {
     WebDriver driver;
@@ -58,11 +57,9 @@ public class BGR13_20 {
         assertEquals(driver.getTitle(), expectedTitle);
     }
 
-    // automated screenshot of the Vehicles page...stole Mert's solution to find the Refresh button element
+    // had to steal Mert's solution for finding the Refresh button element
     @Test (priority = 3)
     public void findPosition() throws IOException {
-        File file = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(file, new File(System.getProperty("user.dir")+"\\screenshots\\screenshot.png"));
 
         WebElement followingResetButton = driver.findElement(By.xpath("//a[@title='Refresh']//following-sibling::a"));
 
@@ -71,12 +68,18 @@ public class BGR13_20 {
         System.out.println("Test Passed successfully");
     }
 
+
+    // cannot find this element, so I automated a screenshot
+    @Test (priority = 4)
+    public void takeScreenshot() throws IOException {
+        File file = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(file, new File(System.getProperty("user.dir")+"\\screenshots\\screenshot.png"));
+
+    }
+
     @AfterClass
     public void tearDown(){
         driver.close();
     }
 
 }
-
-
-
