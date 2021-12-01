@@ -1,4 +1,4 @@
-package test_cases.vytrack_cases;
+package test_cases.vytrack_cases.testplan_b24g13_sprint1;
 
 
 import org.openqa.selenium.*;
