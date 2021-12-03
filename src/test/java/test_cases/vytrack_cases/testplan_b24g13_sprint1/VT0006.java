@@ -11,7 +11,7 @@ import test_cases.utils.WebDriverFactory;
 
 import java.util.concurrent.TimeUnit;
 
-public class BGR13_32 {
+public class VT0006 {
 
 
     WebDriver driver;
