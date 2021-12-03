@@ -76,10 +76,7 @@ import java.util.concurrent.TimeUnit;
             WebElement nextButton = driver.findElement(By.xpath("//i[@class='fa-chevron-right hide-text']"));
             nextButton.click();
 
-
-
-
-
+            //
             //<i class="fa-refresh"></i>
             WebElement resetButton = driver.findElement(By.linkText("Reset"));
             resetButton.click();
