@@ -3,12 +3,8 @@ package test_cases.vytrack_cases;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
-import test_cases.utils.VytrackLogin;
 import test_cases.utils.WebDriverFactory;
 
-import javax.swing.plaf.ActionMapUIResource;
 import java.util.Collections;
 import java.util.List;
 
