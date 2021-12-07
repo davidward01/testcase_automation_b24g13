@@ -1,61 +1,85 @@
-package test_cases.vytrack_cases.testplan_b24g13_sprint1;
+package com.cybertek.tests.groupProject;
 
-import org.openqa.selenium.*;
-import test_cases.utils.WebDriverFactory;
+import com.cybertek.utils.WebDriverFactory;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
-public class BGR13_34 {
+import java.util.concurrent.TimeUnit;
 
-        public static void main(String[] args) throws InterruptedException {
-            String appUrl = "https://qa2.vytrack.com/";
-            WebDriver driver = WebDriverFactory.getDriver("chrome");
+import static org.testng.Assert.assertEquals;
 
-            driver.manage().window().maximize();
-            driver.get(appUrl);
+public class ExportGridBtnIsLeftOfThePage {
 
-            WebElement username = driver.findElement(By.cssSelector("input[name = '_username']"));
-            username.sendKeys("user36");
+    WebDriver driver;
 
-            Thread.sleep(3000);
-
-            WebElement password = driver.findElement(By.cssSelector("input[name = '_password']"));
-            password.sendKeys("UserUser123");
-
-            Thread.sleep(3000);
-
-
-            WebElement login = driver.findElement(By.name("_submit"));
-            login.click();
-
-
-            Thread.sleep(3000);
-
-            WebElement fleetOption = driver.findElement(By.cssSelector("span[class = 'title title-level-1']"));
-            fleetOption.click();
-            System.out.println("Done Mouse hover on 'Fleet' from Menu");
-
-            Thread.sleep(3000);
-
-
-            WebElement vehicleOption = driver.findElement(By.xpath("//span[@class='title title-level-2']"));
-            System.out.println("Done Mouse hover on 'Vehicle' from Menu");
-            vehicleOption.click();
-
-            Thread.sleep(3000);
-
-            //*[@id="grid-custom-entity-grid-1280464595"]/div[2]/div[1]/div/div[2]/div[2]/div/div/a
-            WebElement gridBtn = driver.findElement(By.linkText("Export Grid"));
-
-
-            Dimension gridBtnRect = gridBtn.getSize();
-            System.out.println(gridBtnRect);
-
-            System.out.println("Height location:" + gridBtn.getRect().height +   "  || " + " Width location: " +gridBtn.getRect().width);
-            //System.out.println("Width location: " +gridBtn.getRect().width);
-
-            Point location = gridBtn.getLocation();
-            System.out.println("X location: " + location.getX() + "      || " + " Y location: " +location.getY());
-
-
-        }
+    @BeforeClass
+    public void setUp() {
+        String url = "https://qa2.vytrack.com/user/login";
+        String expectedTitle = "Login";
+        driver = WebDriverFactory.getDriver("chrome");
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.manage().window().maximize();
+        driver.get(url);
+        assertEquals(driver.getTitle(), expectedTitle);
     }
 
+    @AfterClass
+    public void tearDown(){
+        driver.close();
+    }
+
+    @Test(priority = 1)
+    public void logIn() {
+        String username = "User36";
+        String password = "UserUser123";
+        String expectedTitle = "Dashboard";
+
+        WebElement usernameBox = driver.findElement(By.name("_username"));
+        usernameBox.sendKeys(username);
+
+        WebElement passwordBox = driver.findElement(By.name("_password"));
+        passwordBox.sendKeys(password);
+
+        WebElement logInButton = driver.findElement(By.id("_submit"));
+        logInButton.click();
+
+        assertEquals(driver.getTitle(), expectedTitle);
+    }
+
+    @Test(priority = 2)
+    public void navigateToVehiclesPage() throws InterruptedException {
+
+        Actions actions = new Actions(driver);
+        WebElement fleetTab = driver.findElement(By.xpath("//span[contains(text(),'Fleet')]"));
+        WebElement vehiclesButton = driver.findElement(By.xpath("//span[contains(text(),'Vehicles')]"));
+        actions.moveToElement(fleetTab).perform();
+        actions.moveToElement(vehiclesButton).perform();
+        vehiclesButton.click();
+
+        Thread.sleep(2000);
+
+        //verify correct page opens after clicking vehicles
+        String expectedTitle = "Car - Entities - System - Car - Entities - System";
+        assertEquals(driver.getTitle(), expectedTitle);
+
+        Thread.sleep(2000);
+    }
+
+
+    @Test(priority = 3)
+    public void gridBtnOnLeft() {
+
+        WebElement gridBtn = driver.findElement(By.linkText("Export Grid"));
+
+        Assert.assertEquals(gridBtn.getText(), "Export Grid", "is wrong location");
+
+        System.out.println("PASSED: successfully locate on the left side");
+
+    }
+}
