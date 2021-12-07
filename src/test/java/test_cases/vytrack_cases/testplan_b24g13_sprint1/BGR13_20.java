@@ -82,14 +82,12 @@ public class BGR13_20 {
      *
      * automated a screen shot -> stored in C:\Users\matth\IdeaProjects\testcase_automation_b24g13\screenshots
      *
-     * TODO: make file naming more dynamic
-     *
      * @throws IOException
      */
     @Test (priority = 4)
     public void takeScreenshot() throws IOException {
         File file = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(file, new File(System.getProperty("user.dir")+"\\screenshots\\screenshot.png"));
+        FileUtils.copyFile(file, new File(System.getProperty("user.dir")+"\\screenshots\\BGR13_20_screenshot.png"));
     }
 
     @AfterClass
