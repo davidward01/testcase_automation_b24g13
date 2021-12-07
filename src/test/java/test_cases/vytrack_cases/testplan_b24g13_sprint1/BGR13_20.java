@@ -29,20 +29,29 @@ public class BGR13_20 {
 
     @Test (priority = 1)
     public void logIn(){
+
         String username = "User36";
         String password = "UserUser123";
         String expectedTitle = "Dashboard";
+
+
+        // enter login information
         WebElement usernameBox = driver.findElement(By.name("_username"));
         usernameBox.sendKeys(username);
         WebElement passwordBox = driver.findElement(By.name("_password"));
         passwordBox.sendKeys(password);
         WebElement logInButton = driver.findElement(By.id("_submit"));
         logInButton.click();
+
+        //verify we are on the right page
         assertEquals(driver.getTitle(), expectedTitle);
+
     }
 
     @Test (priority = 2)
     public void navigateToVehiclesPage() throws InterruptedException {
+
+        //hover over Fleet tab, select Vehicles from options
         Actions actions = new Actions(driver);
         WebElement fleetTab = driver.findElement(By.xpath("//span[contains(text(),'Fleet')]"));
         WebElement vehiclesButton = driver.findElement(By.xpath("//span[contains(text(),'Vehicles')]"));
@@ -52,12 +61,12 @@ public class BGR13_20 {
 
         Thread.sleep(5000);
 
-        //verify correct page opens after clicking vehicles
+        //verify correct page opens after clicking Vehicles
         String expectedTitle = "Car - Entities - System - Car - Entities - System";
         assertEquals(driver.getTitle(), expectedTitle);
     }
 
-    // had to steal Mert's solution for finding the Refresh button element
+    // had to steal Mert's solution for finding the Refresh button element. Thanks Mert!
     @Test (priority = 3)
     public void findPosition() throws IOException {
 
@@ -69,12 +78,16 @@ public class BGR13_20 {
     }
 
 
-    // cannot find this element, so I automated a screenshot
+    /**
+     *
+     * automated a screen shot -> stored in C:\Users\matth\IdeaProjects\testcase_automation_b24g13\screenshots
+     *
+     * @throws IOException
+     */
     @Test (priority = 4)
     public void takeScreenshot() throws IOException {
         File file = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(file, new File(System.getProperty("user.dir")+"\\screenshots\\screenshot.png"));
-
+        FileUtils.copyFile(file, new File(System.getProperty("user.dir")+"\\screenshots\\BGR13_20_screenshot.png"));
     }
 
     @AfterClass
